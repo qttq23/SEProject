@@ -21,18 +21,25 @@
     [ Validate ]*/
     var input = $('.validate-input .input100');
 
-    $('.validate-form').on('submit',function(){
+    $('#signupForm').submit(function (event) {
+        event.preventDefault();
+        validate();
+      });
+
+      function validate() {   
         var check = true;
         for(var i=0; i<input.length; i++) {
             console.log($(input[i]).val());
-            if(validate(input[i]) == false){
+            if(validateText(input[i]) == false){
                 showValidate(input[i]);
                 check=false;
             }
         }
-
-        return check;
-    });
+        if (check === true) {
+            $('#signupForm').off('submit').submit();
+            
+        }
+      }
 
 
     $('.validate-form .input100').each(function(){
@@ -41,7 +48,7 @@
         });
     });
 
-    function validate (input) {
+    function validateText (input) {
         const val = $(input).val()
         if($(input).attr('type') === 'email' || $(input).attr('name') == 'email') {
             if (!validateEmail(val)) {
