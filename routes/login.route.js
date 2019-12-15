@@ -8,9 +8,6 @@ router.get('/login', function(req, res) {
 
 router.post('/login', function (req,res) 
 {
-    res.writeHead(301,
-        {Location: '/'}
-        );
     res.end();
 })
 module.exports = router;
