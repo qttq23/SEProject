@@ -21,18 +21,25 @@
     [ Validate ]*/
     var input = $('.validate-input .input100');
 
-    $('.validate-form').on('submit',function(){
+    $('#signupForm').submit(function (event) {
+        event.preventDefault();
+        validate();
+      });
+
+      function validate() {   
         var check = true;
         for(var i=0; i<input.length; i++) {
             console.log($(input[i]).val());
-            if(validate(input[i]) == false){
+            if(validateText(input[i]) == false){
                 showValidate(input[i]);
                 check=false;
             }
         }
-
-        return check;
-    });
+        if (check === true) {
+            $('#signupForm').off('submit').submit();
+            
+        }
+      }
 
 
     $('.validate-form .input100').each(function(){
@@ -41,17 +48,32 @@
         });
     });
 
-    function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-            if (!validateEmail($(input).val())) {
+    function validateText (input) {
+        const val = $(input).val()
+        if($(input).attr('type') === 'email' || $(input).attr('name') == 'email') {
+            if (!validateEmail(val)) {
                 return false;
             }
         } 
+        else if($(input).attr('name') === 'username') {
+            if(val.length < 6) {
+                return false
+            }
+        } else if($(input).attr('name') === 'password') {
+            if(!validatePassword(val)) {
+                return false
+            }
+        }
         else {
-            if($(input).val().trim() == ''){
+            if(val.trim() == ''){
                 return false;
             }
         }
+    }
+
+    function validatePassword(password) {
+        var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+        return re.test(password);
     }
 
     function validateEmail(email) {
@@ -93,3 +115,6 @@
 
 
 })(jQuery);
+
+
+

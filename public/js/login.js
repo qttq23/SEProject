@@ -1,4 +1,3 @@
-
 (function ($) {
     "use strict";
 
@@ -21,19 +20,6 @@
     [ Validate ]*/
     var input = $('.validate-input .input100');
 
-    $('.validate-form').on('submit',function(){
-        var check = true;
-        for(var i=0; i<input.length; i++) {
-            console.log($(input[i]).val());
-            if(validate(input[i]) == false){
-                showValidate(input[i]);
-                check=false;
-            }
-        }
-
-        return check;
-    });
-
 
     $('.validate-form .input100').each(function(){
         $(this).focus(function(){
@@ -41,10 +27,42 @@
         });
     });
 
-    function validate (input) {
-        if($(input).val().trim() == ''){
-           return false;
+    
+    $('#loginForm').submit(function (event) {
+        event.preventDefault();
+        validate();
+      });
+    
+      function validate() {      
+        var check = true;
+        for(var i=0; i<input.length; i++) {
+            console.log($(input[i]).val());
+            if(validateText(input[i]) == false){
+                showValidate(input[i]);
+                check=false;
+            }
         }
+        if (check === true) {
+            $('#loginForm').off('submit').submit();
+        }
+      }
+
+    function validateText(input) {
+        const val = $(input).val();
+        if($(input).attr('name') === 'username') {
+            if(val.length < 6) {
+                return false
+            }
+        } else if($(input).attr('name') === 'password') {
+            if(!validatePassword(val)) {
+                return false
+            }
+        }
+    }
+
+    function validatePassword(password) {
+        var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+        return re.test(password);
     }
 
     function showValidate(input) {
@@ -78,5 +96,6 @@
         
     });
 
-
 })(jQuery);
+
+
