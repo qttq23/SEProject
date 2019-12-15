@@ -1,21 +1,16 @@
-<div class="card">
-  <div class="card-header">
-    <h4>Products</h4>
-  </div>
-  {{#if this.empty}}
+<link rel="stylesheet" type="text/css" href="stylesheets/partials/items.css">
+
+<div class="item-section-container">
+  <h4>All books</h4>
+  <div class="item-section-container-flex">
+    {{#if this.empty}}
   <div class="card-body">
-    <h4 class="card-text">Không có dữ liệu.</h4>
+    <h4 class="card-text">No data</h4>
   </div>
   {{else}}
-  <table class="table table-hover">
-    <tbody>
       {{#each this.books}}
-      <tr>
-        <th scope="row" class="text-center">{{id}}</th>
-        <td>{{title}}</td>
-      </tr>
+        {{>item this}}
       {{/each}}
-    </tbody>
-  </table>
   {{/if}}
+  </div>
 </div>
