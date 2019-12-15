@@ -26,5 +26,6 @@ app.use('/users', usersRouter);
 app.use('/', require('./routes/reader/all.route'));
 app.use('/', require('./routes/login.route'));
 app.use('/', require('./routes/signup.route'));
+app.use('/item', require('./routes/viewDetails.route'));
 
 module.exports = app;
