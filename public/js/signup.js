@@ -20,7 +20,9 @@
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
-
+    $(document).ready(function() {
+        $('.input100').val('');
+    });
     $('#signupForm').submit(function (event) {
         event.preventDefault();
         validate();
