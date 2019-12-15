@@ -8,7 +8,6 @@ router.get('/login', function(req, res) {
 
 router.post('/login', function (req,res) 
 {
-    
-    res.end();
+    res.render('index');
 })
 module.exports = router;
