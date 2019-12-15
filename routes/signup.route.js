@@ -6,4 +6,9 @@ router.get('/signup', function(req, res) {
     res.render('signup', { layout: false });
 })
 
+router.post('/signup', function(req, res) {
+    
+    res.end();
+})
+
 module.exports = router;
