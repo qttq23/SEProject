@@ -1,7 +1,7 @@
 (function ($) {
     "use strict";
 
-
+    
     /*==================================================================
     [ Focus input ]*/
     $('.input100').each(function(){
@@ -20,6 +20,9 @@
     [ Validate ]*/
     var input = $('.validate-input .input100');
 
+    $(document).ready(function() {
+        $('.input100').val('');
+    });
 
     $('.validate-form .input100').each(function(){
         $(this).focus(function(){
