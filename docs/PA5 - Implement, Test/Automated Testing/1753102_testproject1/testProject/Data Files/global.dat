@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFileEntity>
+   <description></description>
+   <name>global</name>
+   <tag></tag>
+   <containsHeaders>true</containsHeaders>
+   <csvSeperator></csvSeperator>
+   <dataFileGUID>9f1fd2bc-e1ef-4d97-b0aa-6eeec4b562f4</dataFileGUID>
+   <dataSourceUrl>../../Desktop/Ggdrive-buithang1999a@gmail.com/seProject/docs/PA5 - Implement, Test/Automated Testing/1753102_testproject1/dataForAutoTest.xlsx</dataSourceUrl>
+   <driver>ExcelFile</driver>
+   <isInternalPath>true</isInternalPath>
+   <query></query>
+   <secureUserAccount>false</secureUserAccount>
+   <sheetName>global</sheetName>
+   <usingGlobalDBSetting>false</usingGlobalDBSetting>
+</DataFileEntity>
