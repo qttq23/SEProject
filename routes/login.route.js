@@ -1,13 +1,14 @@
 var express = require('express');
-const bookModel = require('../models/book.model');
+const userModel = require('../models/user.model');
 var router = express.Router();
 
-router.get('/login', function(req, res) {
+router.get('/login', async function(req, res) {
+    results = await userModel.checkUser("admin1111", "123456");
+    console.log(results);
     res.render('login', { layout: false });
 })
 
-router.post('/login', function (req,res) 
-{
+router.post('/login', function(req, res) {
     res.render('index');
 })
 module.exports = router;
