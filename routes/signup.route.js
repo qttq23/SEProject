@@ -1,5 +1,5 @@
 var express = require('express');
-const bookModel = require('../models/book.model');
+const userModel = require('../models/user.model');
 var router = express.Router();
 
 router.get('/signup', function(req, res) {

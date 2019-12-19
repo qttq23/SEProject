@@ -1,21 +1,20 @@
-(function ($) {
+(function($) {
     "use strict";
 
-    
+
     /*==================================================================
     [ Focus input ]*/
-    $('.input100').each(function(){
-        $(this).on('blur', function(){
-            if($(this).val().trim() != "") {
+    $('.input100').each(function() {
+        $(this).on('blur', function() {
+            if ($(this).val().trim() != "") {
                 $(this).addClass('has-val');
-            }
-            else {
+            } else {
                 $(this).removeClass('has-val');
             }
-        })    
+        })
     })
-  
-  
+
+
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
@@ -24,40 +23,48 @@
         $('.input100').val('');
     });
 
-    $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
-           hideValidate(this);
+    $('.validate-form .input100').each(function() {
+        $(this).focus(function() {
+            hideValidate(this);
         });
     });
 
-    
-    $('#loginForm').submit(function (event) {
-        event.preventDefault();
+
+    $('#loginFormSubmit').click(function() {
         validate();
-      });
-    
-      function validate() {      
+    });
+
+    function validate() {
         var check = true;
-        for(var i=0; i<input.length; i++) {
+        for (var i = 0; i < input.length; i++) {
             console.log($(input[i]).val());
-            if(validateText(input[i]) == false){
+            if (validateText(input[i]) == false) {
                 showValidate(input[i]);
-                check=false;
+                check = false;
             }
         }
         if (check === true) {
-            $('#loginForm').off('submit').submit();
+            var username = $("#loginFormUsername").val();
+            var password = $("#loginFormPassword").val();
+            $('#loginForm').off('submit');
+
+            $.post("/check_user", { username: username, password: password }, function(data) {
+                console.log("checked");
+                if (data === 'done') {
+                    alert("login success");
+                }
+            });
         }
-      }
+    }
 
     function validateText(input) {
         const val = $(input).val();
-        if($(input).attr('name') === 'username') {
-            if(val.length < 6) {
+        if ($(input).attr('name') === 'username') {
+            if (val.length < 6) {
                 return false
             }
-        } else if($(input).attr('name') === 'password') {
-            if(!validatePassword(val)) {
+        } else if ($(input).attr('name') === 'password') {
+            if (!validatePassword(val)) {
                 return false
             }
         }
@@ -79,26 +86,23 @@
 
         $(thisAlert).removeClass('alert-validate');
     }
-    
+
     /*==================================================================
     [ Show pass ]*/
     var showPass = 0;
-    $('.btn-show-pass').on('click', function(){
-        if(showPass == 0) {
-            $(this).next('input').attr('type','text');
+    $('.btn-show-pass').on('click', function() {
+        if (showPass == 0) {
+            $(this).next('input').attr('type', 'text');
             $(this).find('i').removeClass('zmdi-eye');
             $(this).find('i').addClass('zmdi-eye-off');
             showPass = 1;
-        }
-        else {
-            $(this).next('input').attr('type','password');
+        } else {
+            $(this).next('input').attr('type', 'password');
             $(this).find('i').addClass('zmdi-eye');
             $(this).find('i').removeClass('zmdi-eye-off');
             showPass = 0;
         }
-        
+
     });
 
 })(jQuery);
-
-

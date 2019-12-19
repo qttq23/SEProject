@@ -1,16 +1,6 @@
-<link rel="stylesheet" type="text/css" href="stylesheets/partials/item.css">
-<div class="card m-2 h-100 col-sm-2" >
-  <div class="w-100">
-      <img class="card-img-top" src="{{image_url}}" height="250" width="100" alt="Card image cap" onerror="https://pbs.twimg.com/profile_images/783312363978129408/R6vKaLYH_400x400.jpg">
-      <a href="item/{{id}}" data-id="{{id}}" class="text-dark book-description-link">
-      <div class="card-body w-100">
-          <h5 class="card-title align-content-center">{{title}}</h5>
-          <p class="card-text price">{{price}}$</p>
-      </div>
-      <div class="card-footer d-flex justify-content-center">
-        <a  class="btn btn-outline-primary" href="item/{{id}}" data-id="{{id}}" role="button">Contact</a>
-      </div>
-      </a>
-  </div>
-
+<div class="item-card">
+  <img src="{{image_url}}" onerror="https://pbs.twimg.com/profile_images/783312363978129408/R6vKaLYH_400x400.jpg">
+  <h6><a href="item/{{id}}" data-id="{{id}}">{{title}}</a></h6>
+  <p class="price">{{price}}$</p>
+  <p><button href="item/{{id}}"><a>Contact</a></button></p>
 </div>
