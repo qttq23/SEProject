@@ -1,0 +1,52 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/partials/nav.css">
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+    aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <style>
+        li{
+          margin-right: 10px;
+        }
+      </style>
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/all">All</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/blog">Blog</a>
+      </li>
+      <li class="nav-item">
+        <form id="navSearchBook" class="form-inline" action="/all" method="GET">
+          <input name="keyword" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </li>
+    </ul>
+
+    <div>
+      <style>
+        a{
+          margin-right: 30px;
+        }
+      </style>
+      <a href="favourite" class="btn btn-outline-light">
+      <span class="login100-form-title p-b-26">
+                <img src="https://cdn0.iconfinder.com/data/icons/round-ui-icons/512/heart_red.png" width="25px" height="25px" alt="" />
+            </span>
+      Favourite
+    </a>
+    <a href="login" class="btn btn-light">
+      <span class="login100-form-title p-b-26">
+                <img src="../Assets/img_avatar.png" width="25px" height="25px" alt="" />
+            </span>
+      Login
+    </a>
+    </div>
+    
+  </div>
+</nav>

@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Products</h4>
+  </div>
+  {{#if this.empty}}
+  <div class="card-body">
+    <h4 class="card-text">Không có dữ liệu.</h4>
+  </div>
+  {{else}}
+  <table class="table table-hover">
+    <tbody>
+      {{#each this.books}}
+      <tr>
+        <th scope="row" class="text-center">{{id}}</th>
+        <td>{{title}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{/if}}
+</div>

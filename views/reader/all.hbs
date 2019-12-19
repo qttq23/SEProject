@@ -1,0 +1,16 @@
+<link rel="stylesheet" type="text/css" href="stylesheets/partials/items.css">
+<title>{{title}}</title>
+<div class="item-section-container">
+  <h4>All books</h4>
+  <div class="item-section-container-flex">
+    {{#if this.empty}}
+  <div class="card-body">
+    <h4 class="card-text">No data</h4>
+  </div>
+  {{else}}
+      {{#each this.books}}
+        {{>item this}}
+      {{/each}}
+  {{/if}}
+  </div>
+</div>
