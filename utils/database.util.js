@@ -3,11 +3,11 @@ const util = require('util');
 
 const pool = mysql.createPool({
     connectionLimit: 100,
-    host: 'bx9jgtmpdc7as9qdv09x-mysql.services.clever-cloud.com',
-    port: 3306,
-    user: 'uknggzpjdtr1gv2t',
-    password: 'qPr3wJxaUU8HIPxXfDbN',
-    database: 'bx9jgtmpdc7as9qdv09x',
+    host: 'localhost',
+    //port: 3306,
+    user: 'root',
+    password: 'Thanh1999@',
+    database: 'onlinebookstore',
     insecureAuth: true
 });
 
