@@ -31,6 +31,7 @@
 
 
     $('#loginFormSubmit').click(function() {
+        event.preventDefault();
         validate();
     });
 
@@ -46,12 +47,12 @@
         if (check === true) {
             var username = $("#loginFormUsername").val();
             var password = $("#loginFormPassword").val();
-            $('#loginForm').off('submit');
 
-            $.post("/check_user", { username: username, password: password }, function(data) {
-                console.log("checked");
-                if (data === 'done') {
-                    alert("login success");
+            $.getJSON(`/login/checkuser?user=${username}&password=${password}`, function (data) {
+                if (data === true) {
+                    $('#loginForm').off('submit').submit();
+                } else {
+                    alert('Username is existed!');
                 }
             });
         }

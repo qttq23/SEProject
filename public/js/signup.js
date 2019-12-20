@@ -31,14 +31,20 @@
       function validate() {   
         var check = true;
         for(var i=0; i<input.length; i++) {
-            console.log($(input[i]).val());
             if(validateText(input[i]) == false){
                 showValidate(input[i]);
                 check=false;
             }
         }
         if (check === true) {
-            $('#signupForm').off('submit').submit();
+            const username = $('#username').val();
+            $.getJSON(`/signup/is-available?user=${username}`, function (data) {
+                if (data === true) {
+                  $('#signupForm').off('submit').submit();
+                } else {
+                  alert('not available');
+                }
+              })
             
         }
       }
@@ -57,7 +63,7 @@
                 return false;
             }
         } 
-        else if($(input).attr('name') === 'username') {
+        else if($(input).attr('name') === 'username' || $(input).attr('name') === 'name') {
             if(val.length < 6) {
                 return false
             }

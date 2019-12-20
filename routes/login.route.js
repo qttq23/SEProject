@@ -7,20 +7,29 @@ router.get('/login', function(req, res) {
 })
 
 router.post('/login', async function(req, res) {
-    const password = req.body.password;
-    const username = req.body.username;
-    console.log(username);
-    console.log(password);
-    const results = await userModel.checkAccountValidated(username, password);
+    // const password = req.body.password;
+    // const username = req.body.username;
+    // console.log(username);
+    // console.log(password);
+    // const results = await userModel.checkAccountValidated(username, password);
 
-    console.log(results);
-    if (results.length === 0) {
-        console.log("no");
-    } else {
-        console.log("validated");
-        res.render("index");
-    }
-
+    // console.log(results);
+    // if (results.length === 0) {
+    //     console.log("no");
+    // } else {
+    //     console.log("validated");
+    //     res.render("index");
+    // }
+    res.render('index');
 })
+
+router.get('/login/checkuser', async function (req, res) {
+    const user = await userModel.checkAccountValidated(req.query.user, req.query.password);
+
+    if (user)
+        return res.json(true);
+
+    res.json(false);
+  })
 
 module.exports = router;
