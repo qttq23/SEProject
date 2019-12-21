@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <style>
-        li{
+        li {
           margin-right: 10px;
         }
       </style>
@@ -28,25 +28,43 @@
       </li>
     </ul>
 
-    <div>
+    <div class="d-flex justify-content-end"> 
       <style>
-        a{
+        a {
           margin-right: 30px;
         }
       </style>
-      <a href="favourite" class="btn btn-outline-light">
-      <span class="login100-form-title p-b-26">
-                <img src="https://cdn0.iconfinder.com/data/icons/round-ui-icons/512/heart_red.png" width="25px" height="25px" alt="" />
-            </span>
-      Favourite
-    </a>
-    <a href="login" class="btn btn-light">
-      <span class="login100-form-title p-b-26">
-                <img src="./Assets/img_avatar.png" width="25px" height="25px" alt="" />
-            </span>
-      Login
-    </a>
+      <form id="frmLogout" action="/logout" method="post"></form>
+      <ul class="navbar-nav">
+        {{#if lcIsAuthenticated}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Welcome, {{lcAuthUser.name}}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/account/profile">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              Account Profile
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              Logout
+            </a>
+          </div>
+        </li>
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Register</a>
+        </li>
+        {{/if}}
+      </ul>
     </div>
-    
+
   </div>
 </nav>

@@ -22,7 +22,21 @@ router.post('/login', async function(req, res) {
       layout: false,
       err_message: 'Invalid username or password.'
     });
-})
+
+    delete user.password;
+    req.session.isAuthenticated = true;
+    req.session.authUser = user;
+    req.session.touch(); 
+    const url = req.query.retUrl || '/';
+    console.log(url);
+    res.redirect(url);
+  })
+  
+  router.post('/logout', async function (req, res) {
+    req.session.isAuthenticated = false;
+    req.session.authUser = null;
+    res.redirect(req.headers.referer);
+  })
 
 router.get('/login/checkuser', async function (req, res) {
     const user = await userModel.checkAccountValidated(req.query.user, req.query.password);
