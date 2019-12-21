@@ -1,4 +1,5 @@
 var express = require('express');
+const bcrypt = require('bcryptjs');
 const userModel = require('../models/user.model');
 var router = express.Router();
 
@@ -7,20 +8,20 @@ router.get('/login', function(req, res) {
 })
 
 router.post('/login', async function(req, res) {
-    // const password = req.body.password;
-    // const username = req.body.username;
-    // console.log(username);
-    // console.log(password);
-    // const results = await userModel.checkAccountValidated(username, password);
-
-    // console.log(results);
-    // if (results.length === 0) {
-    //     console.log("no");
-    // } else {
-    //     console.log("validated");
-    //     res.render("index");
-    // }
-    res.render('index');
+    var username = req.body.username;
+    var password = req.body.password;
+    const user = await userModel.singleByUserName(req.body.username);
+    if (user === null)
+      return res.render('login', {
+        layout: false,
+        err_message: 'Invalid username or password.'
+      });
+    const rs = bcrypt.compareSync(req.body.password, user.password);
+    if (rs === false)
+    return res.render('login', {
+      layout: false,
+      err_message: 'Invalid username or password.'
+    });
 })
 
 router.get('/login/checkuser', async function (req, res) {

@@ -45,16 +45,7 @@
             }
         }
         if (check === true) {
-            var username = $("#loginFormUsername").val();
-            var password = $("#loginFormPassword").val();
-
-            $.getJSON(`/login/checkuser?user=${username}&password=${password}`, function (data) {
-                if (data === true) {
-                    $('#loginForm').off('submit').submit();
-                } else {
-                    alert('Username is existed!');
-                }
-            });
+            $('#loginForm').off('submit').submit();
         }
     }
 

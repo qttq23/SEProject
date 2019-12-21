@@ -29,17 +29,25 @@
                 <img src="./assets/img_avatar.png" width="150" height="150" alt="" />
             </span>
 
-
+            {{#if err_message}}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{err_message}}
+            </div>
+            {{/if}}
             <div class="wrap-input100 validate-input" data-validate="Username is required at least 6 characters.">
-                <input class="input100" type="text" name="username" id="loginFormUsername"/>
+                <input class="input100" type="text" name="username" id="loginFormUsername" />
                 <span class="focus-input100" data-placeholder="Username"></span>
             </div>
 
-            <div class="wrap-input100 validate-input" data-validate="Password must contain at least 8 characters, 1 number, 1 upper and 1 lowercase.">
+            <div class="wrap-input100 validate-input"
+                data-validate="Password must contain at least 8 characters, 1 number, 1 upper and 1 lowercase.">
                 <span class="btn-show-pass">
                     <i class="zmdi zmdi-eye"></i>
                 </span>
-                <input class="input100" type="password" name="password" id="loginFormPassword"/>
+                <input class="input100" type="password" name="password" id="loginFormPassword" />
                 <span class="focus-input100" data-placeholder="Password"></span>
             </div>
             <div class="container-login100-form-btn">

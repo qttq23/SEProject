@@ -9,6 +9,15 @@ router.get('/signup', function(req, res) {
 })
 
 router.post('/signup', async function(req, res) {
+  var username = req.body.username;
+  const user = await userModel.singleByUserName(req.body.username);
+  if (user !== null) {
+    return res.render('signup', {
+      layout: false,
+      err_message: 'Usernam is existed.'
+    });
+  }
+
     const hash = bcrypt.hashSync(req.body.password, config.authentication.saltRounds);
     const entity = {
         name: req.body.name,

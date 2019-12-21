@@ -38,14 +38,7 @@
         }
         if (check === true) {
             const username = $('#username').val();
-            $.getJSON(`/signup/is-available?user=${username}`, function (data) {
-                if (data === true) {
-                  $('#signupForm').off('submit').submit();
-                } else {
-                  alert('not available');
-                }
-              })
-            
+            $('#signupForm').off('submit').submit();
         }
       }
 
