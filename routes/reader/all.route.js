@@ -11,7 +11,7 @@ router.get('/all', async function(req, res) {
             empty: results.length === 0
         })
     } else {
-        const results = await bookModel.search(req.query.keyword);
+        const results = await bookModel.search(req.query.keyword.trim());
 
         res.render('reader/all', {
             books: results,
