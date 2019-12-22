@@ -57,7 +57,7 @@
             }
         } 
         else if($(input).attr('name') === 'username' || $(input).attr('name') === 'name') {
-            if(val.length < 6) {
+            if(val.length < 6 || val.indexOf(' ') >= 0) {
                 return false
             }
         } else if($(input).attr('name') === 'password') {
@@ -66,7 +66,7 @@
             }
         }
         else {
-            if(val.trim() == ''){
+            if(val.trim() == '' ){
                 return false;
             }
         }

@@ -14,7 +14,14 @@ router.post('/signup', async function(req, res) {
   if (user !== null) {
     return res.render('signup', {
       layout: false,
-      err_message: 'Usernam is existed.'
+      err_message: 'Username is existed.'
+    });
+  }
+  const emailCheck = await userModel.checkEmailValidated(req.body.email);
+  if( emailCheck !== null) {
+    return res.render('signup', {
+      layout: false,
+      err_message: 'Email is existed.'
     });
   }
 
