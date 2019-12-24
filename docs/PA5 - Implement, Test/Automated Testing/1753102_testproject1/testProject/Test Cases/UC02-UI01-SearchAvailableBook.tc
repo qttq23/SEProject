@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description>script</description>
-   <name>UC02-UI01-SearchAvailableBook</name>
-   <tag>tc</tag>
-   <comment></comment>
-   <testCaseGuid>80481a8a-0d13-441b-b1dc-d3984a5c99ec</testCaseGuid>
-</TestCaseEntity>

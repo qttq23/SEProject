@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description>script</description>
-   <name>UC02-UI05-SearchBookWithSpaces</name>
-   <tag>tc</tag>
-   <comment></comment>
-   <testCaseGuid>c1255925-f4cf-43e8-b499-6aa3f1e0f015</testCaseGuid>
-</TestCaseEntity>
