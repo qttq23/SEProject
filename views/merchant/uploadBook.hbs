@@ -1,0 +1,61 @@
+<!-- include summernote css/js-->
+<!-- include summernote css/js -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/fileinput.min.js"></script>
+<script>
+    $("#images").fileinput({
+        autoOrientImage: false,
+    });
+</script>
+    <style>
+        #footer{
+            display: none;
+        }
+        .file-input-upload-button{
+            display: none;
+        }
+    </style>
+    <form id="book-details" method="POST" novalidate enctype="multipart/form-data" style="margin:30px;">
+    <div class="upload-image-zone">
+        <h3 style="padding-top:30px;padding-bottom:30px;">Upload a book</h3>
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Choose 3 images:</label>
+            <input type="file" class="file" name="images" id="images" multiple />
+        </div>
+
+        <div id="product-details" class="form-group">
+            <label for="brand">Title:</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+
+        <div id="product-details" class="form-group">
+            <label for="brand">Author:</label>
+            <input type="text" class="form-control" id="author" name="author">
+        </div>
+
+        <div id="product-details" class="form-group">
+            <label for="brand">Original publication year:</label>
+            <input type="text" class="form-control" id="published" name="published">
+        </div>
+    
+        <div id="product-details" class="form-group">
+            <label for="brand">Description:</label>
+            <input type="text" class="form-control" id="description" name="description">
+        </div>
+
+        <div id="product-details" class="form-group">
+            <label for="brand">Price:</label>
+            <input type="text" class="form-control" id="price" name="price">
+        </div>
+
+        
+
+        <button class="btn btn-primary" id="submitForm">
+            Post product
+        </button>
+    </div>
+</form>
+

@@ -11,7 +11,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 app.use(express.urlencoded({
-  extended: true
+    extended: true
 }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,5 +37,6 @@ app.use('/users', usersRouter);
 app.use('/', require('./routes/reader/all.route'));
 app.use('/', require('./routes/account.route'));
 app.use('/item', require('./routes/viewDetails.route'));
+app.use('/', require('./routes/upload.route'));
 
 module.exports = app;
