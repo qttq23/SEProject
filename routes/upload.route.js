@@ -5,11 +5,21 @@ var moment = require('moment');
 const bookModel = require('../models/book.model');
 
 router.get('/upload', async function(req, res) {
-    if (req.session.authUser === null || req.session.authUser.type === "0" || req.session.authUser.type === undefined) {
+    console.log(req.session.authUser);
+    if (req.session.authUser === null || req.session.authUser === undefined) {
+
         res.status(404) // HTTP status 404: NotFound
-            .send('Not found');
+            .render('empty', { message: 'Login as a merchant to upload' });
         return;
     }
+
+    if (req.session.authUser.type === 0 || req.session.authUser.type === undefined) {
+
+        res.status(404) // HTTP status 404: NotFound
+            .render('empty', { message: 'Register as a merchant to upload' });
+        return;
+    }
+
     res.render('merchant/uploadBook', { title: 'Upload a book:' });
 });
 

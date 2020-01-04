@@ -34,10 +34,6 @@
     box-sizing: border-box;
 }
 
-body {
-    margin-bottom: 100px;
-}
-
 body,
 html {
     height: 100%;

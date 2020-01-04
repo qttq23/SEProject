@@ -1,1 +1,0 @@
-$(document).attr("title", "New Title");

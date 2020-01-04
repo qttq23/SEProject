@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="../stylesheets/viewDetails.css" />
+<link rel="stylesheet" href="/stylesheets/viewDetails.css" />
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/stylesheets/rating.css" />
 <title>{{book.title}}</title>    
 <div class="row">
     <div class="col-sm-3">
@@ -48,8 +49,7 @@
             <p>Brief: </p>
             <div class="card text-left">
                 <div class="card-body">
-                    <p class="card-text">The book in the series of @abc about HP The book in the series of @abc about HP
-                        The book in the series of @abc about HP The book in the series of @abc about HP</p>
+                    <p class="card-text">{{book.description}}</p>
                 </div>
             </div>
         </div>
@@ -61,9 +61,9 @@
                     Merchant Contact
                 </span>
             </h3>
-            <p>Merchant name: John</p>
-            <p>Merchant mail: abc77xxx@gmail.com</p>
-            <p>Phonenumber: 09886xxx71</p>
+            <p>Merchant name: {{merchant.name}}</p>
+            <p>Merchant e-mail: {{merchant.email}}</p>
+            <p>Phone number: {{merchant.phone}}</p>
         </div>
 
         <button type="button" class="btn btn-outline-success">
@@ -75,28 +75,25 @@
                 <i class="fa fa-comment-o" aria-hidden="true"></i>
                 Comment
             </h3>
-
-            <div id="chatItem">
+            {{#each comment}}
+                <div id="chatItem">
                 <div>
                     <img src="/assets/ic_authentication.png" width="50" alt="">
                 </div>
                 <div>
                     <div class="card comment-content">
                         <div class="card-body">
-                            <h6 class="card-title">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
+                            <h6 class="card-title">                               
+                                <div class="rating"></div>
                             </h6>
-                            <h5 class="card-title">This is a good product.</h5>
-                            <p class="card-text">I have bought product from this merchant and this is the good merchant.
-                            </p>
+                            <h5 class="card-title">{{comment_title}}</h5>
+                            <p class="card-text">{{content}}</p>
                         </div>
                     </div>
                 </div>
             </div>
+            {{/each}}
+            
             <br>
             <div id="comment-textfield">
                 <textarea id="box" name="comment-area" form="usrform" placeholder="Enter your comment"></textarea>
@@ -126,5 +123,5 @@
         </div>
     </div>
 </div>
-
-<script src="js/viewDetails.js"></script>
+<script src="/js/rating.js"></script>
+<script src="/js/viewDetails.js"></script>
