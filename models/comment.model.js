@@ -20,9 +20,9 @@ module.exports = {
             }
         }
 
-        console.log(query);
-        query = query.substring(0, query.length - 1) + ");";
 
+        query = query.substring(0, query.length - 1) + ");";
+        console.log(query);
         try {
             db.load(query);
         } catch {

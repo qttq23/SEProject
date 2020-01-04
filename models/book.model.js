@@ -8,7 +8,7 @@ module.exports = {
     getById: (id) => db.load("SELECT * FROM book WHERE (id)=" + id),
     getLastId: () => db.load('SELECT id FROM book ORDER BY id DESC LIMIT 1'),
     add: (info) => {
-        var query = "INSERT INTO book (id,";
+        var query = "INSERT INTO book (`id`,";
 
         for (var key in info) {
             if (info.hasOwnProperty(key)) {
@@ -25,9 +25,9 @@ module.exports = {
             }
         }
 
-        console.log(query);
-        query = query.substring(0, query.length - 1) + ");";
 
+        query = query.substring(0, query.length - 1) + ");";
+        console.log(query);
         try {
             db.load(query);
         } catch {
