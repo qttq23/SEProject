@@ -8,7 +8,7 @@
 
 <title>{{book.title}}</title>
 
-<div class="row">
+<div class="row" style="width: 100%;">
     <div class="col-sm-3">
         <div class="product-description " style="padding: 30px;">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -80,11 +80,11 @@
             </h3>
 
             {{#each comment}}
-            <div id="chatItem">
+            <div id="chatItem" style="min-width: 200px;">
                 <div>
                     <img src="/assets/ic_authentication.png" width="50" alt="">
                 </div>
-                <div>
+                <div style="width: 600px;">
                     <div class="card comment-content">
                         <div class="card-body">
                             <h6 class="card-title">
@@ -98,34 +98,37 @@
             </div>
             {{/each}}
             <br>
-            <form action="{{id}}/post_comment" method="POST">
+            <form action="{{id}}/post_comment" method="POST" style="width:60%;padding-left:50px;">
+                
                 <div id="comment-textfield">
-                    <input type="text" name="commenttitle">
-                    <textarea id="box" name="commentarea" placeholder="Enter your comment"></textarea>
+                    <input type="text" placeholder="Comment's title" name="commenttitle">
+                    <textarea style="height: 100px;" id="box" name="commentarea"
+                        placeholder="Enter your comment"></textarea>
+                    <span>How you feel about the product?</span>
                     <div style="display: flex;">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="rating" value="1">1
+                                <input type="radio" class="form-check-input" name="rating" value="1">Poor
                             </label>
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="rating" value="2">2
+                                <input type="radio" class="form-check-input" name="rating" value="2">Bad
                             </label>
                         </div>
-                        <div class="form-check disabled">
+                        <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="rating" value="3">3
+                                <input type="radio" class="form-check-input" name="rating" value="3">Average
                             </label>
                         </div>
-                        <div class="form-check disabled">
+                        <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="rating" value="4">4
+                                <input type="radio" class="form-check-input" name="rating" value="4">Good
                             </label>
                         </div>
-                        <div class="form-check disabled">
+                        <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="rating" value="5">5
+                                <input type="radio" class="form-check-input" name="rating" value="5">Excellent
                             </label>
                         </div>
                     </div>
