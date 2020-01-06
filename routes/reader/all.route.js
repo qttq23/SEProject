@@ -15,7 +15,8 @@ router.get('/all', async function(req, res) {
 
         res.render('reader/all', {
             books: results,
-            empty: results.length === 0
+            empty: results.length === 0,
+            success: req.statusCode === 222
         })
     }
 

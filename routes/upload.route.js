@@ -5,7 +5,6 @@ var moment = require('moment');
 const bookModel = require('../models/book.model');
 
 router.get('/upload', async function(req, res) {
-    console.log(req.session.authUser);
     if (req.session.authUser === null || req.session.authUser === undefined) {
 
         res.status(404) // HTTP status 404: NotFound
@@ -20,7 +19,7 @@ router.get('/upload', async function(req, res) {
         return;
     }
 
-    res.render('merchant/uploadBook', { title: 'Upload a book:' });
+    res.render('merchant/uploadBook', { title: 'Upload a book:', err: req.statusCode === 400 });
 });
 
 router.post('/upload', async function(req, res) {
@@ -74,23 +73,50 @@ router.post('/upload', async function(req, res) {
                 var nowDate = Date.now();
                 //Init the params here
                 var book = {
-                    "title": req.body.title,
+                    "title": mysql_real_escape_string(req.body.title),
                     "created_at": moment(nowDate).format('YYYY-MM-DD hh:mm:ss'),
-                    "description": req.body.description,
+                    "description": mysql_real_escape_string(req.body.description),
                     "original_publication_year": req.body.published,
-                    "price": req.body.price,
-                    "author": req.body.author,
+                    "price": mysql_real_escape_string(req.body.price),
+                    "username": req.session.authUser.username,
+                    "author": mysql_real_escape_string(req.body.author),
                     "img_url": pictureDir[0],
                     "img_url1": pictureDir[1],
                     "img_url2": pictureDir[2],
                 }
                 if (await bookModel.add(book))
-                    res.render('index');
+                    res.redirect('/all');
                 else
-                    res.render('merchant/uploadBook', { title: 'Upload a product:' });
+                    res.status(400).redirect('merchant/uploadBook', { title: 'Upload a product:', err: true });
             }
 
         }
     });
 });
+
+function mysql_real_escape_string(str) {
+    return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function(char) {
+        switch (char) {
+            case "\0":
+                return "\\0";
+            case "\x08":
+                return "\\b";
+            case "\x09":
+                return "\\t";
+            case "\x1a":
+                return "\\z";
+            case "\n":
+                return "\\n";
+            case "\r":
+                return "\\r";
+            case "\"":
+            case "'":
+            case "\\":
+            case "%":
+                return "\\" + char;
+        }
+    });
+}
+
+
 module.exports = router;

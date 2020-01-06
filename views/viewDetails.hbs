@@ -101,14 +101,14 @@
             <form action="{{id}}/post_comment" method="POST" style="width:60%;padding-left:50px;">
                 
                 <div id="comment-textfield">
-                    <input type="text" placeholder="Comment's title" name="commenttitle">
+                    <input type="text" placeholder="Comment's title" name="commenttitle" required minlength="10" maxlength="100">
                     <textarea style="height: 100px;" id="box" name="commentarea"
-                        placeholder="Enter your comment"></textarea>
+                        placeholder="Enter your comment" minlength="10" maxlength="500" required></textarea>
                     <span>How you feel about the product?</span>
                     <div style="display: flex;">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="rating" value="1">Poor
+                                <input type="radio" class="form-check-input" name="rating" value="1" required>Poor
                             </label>
                         </div>
                         <div class="form-check">
