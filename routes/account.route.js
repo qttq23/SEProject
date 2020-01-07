@@ -73,13 +73,24 @@ router.post("/login", async function(req, res) {
   req.session.touch();
   const url = req.query.retUrl || "/";
   console.log(url);
-  res.redirect(url);
+
+  req.session.save(function(err) {
+    if (err) {
+      return;
+    }
+    res.redirect(url);
+  });
 });
 
 router.post("/logout", async function(req, res) {
   req.session.isAuthenticated = false;
   req.session.authUser = null;
-  res.redirect('login');
+  req.session.save(function(err) {
+    if (err) {
+      return;
+    }
+    res.redirect(req.get("referer"));
+  });
 });
 
 router.get("/login/checkuser", async function(req, res) {
@@ -94,30 +105,30 @@ router.get("/login/checkuser", async function(req, res) {
 });
 
 router.get("/profile", function(req, res) {
-    const user = req.session.authUser;
-    let isReader = false;
-    let isMerchant = false;
-    let isAdmin = false;
-    if(user.type === 0) {
-        isReader = true;
-    } else if (user.type === 1) {
-        isMerchant = true;
-    } else if (user.type === 2) {
-        isAdmin = true;
-    }
-    res.render("profile", {
-        user: user,
-        isReader: isReader,
-        isMerchant: isMerchant,
-        isAdmin: isAdmin
-    });
-})
+  const user = req.session.authUser;
+  let isReader = false;
+  let isMerchant = false;
+  let isAdmin = false;
+  if (user.type === 0) {
+    isReader = true;
+  } else if (user.type === 1) {
+    isMerchant = true;
+  } else if (user.type === 2) {
+    isAdmin = true;
+  }
+  res.render("profile", {
+    user: user,
+    isReader: isReader,
+    isMerchant: isMerchant,
+    isAdmin: isAdmin
+  });
+});
 
-router.get("/profile/changeProfile", function (req, res) {
-    const user = req.session.authUser;
-    res.render("changeProfile", {
-        user: user
-    })
-  })
+router.get("/profile/changeProfile", function(req, res) {
+  const user = req.session.authUser;
+  res.render("changeProfile", {
+    user: user
+  });
+});
 
 module.exports = router;
