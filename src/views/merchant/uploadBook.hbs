@@ -1,0 +1,85 @@
+<!-- include summernote css/js-->
+<!-- include summernote css/js -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/fileinput.min.js"></script>
+<script>
+    $("#images").fileinput({
+        autoOrientImage: false,
+    });
+</script>
+<style>
+    #footer {
+        display: none;
+    }
+
+    .file-input-upload-button {
+        display: none;
+    }
+</style>
+<form id="book-details" method="POST" enctype="multipart/form-data" style="margin:30px;">
+    <div class="upload-image-zone">
+        <h3 style="padding-top:30px;padding-bottom:30px;">Upload a book</h3>
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Choose 3 images:</label>
+            <input type="file" class="file" name="images" id="images" multiple required minlength="3" maxlength="3" />
+        </div>
+
+        <div id="product-details" class="form-group">
+            <label for="brand">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+
+        <div id="product-details" class="form-group">
+            <label for="brand">Author:</label>
+            <input type="text" class="form-control" id="author" name="author" required>
+        </div>
+
+        <div id="product-details" class="form-group">
+            <label for="brand">Original publication year:</label>
+            <input type="number" class="form-control" id="published" name="published" value="" required>
+        </div>
+
+        <div id="product-details" class="form-group">
+            <label for="brand">Description:</label>
+            <input type="text" class="form-control" id="description" name="description" required>
+        </div>
+
+        <div id="product-details" class="form-group">
+            <label for="brand">Note:</label>
+            <input type="text" class="form-control" id="price" name="price" required>
+        </div>
+
+        <input type="checkbox" name="agree" value="Bike" required> I agree with the system policy in the <a href="/upload/policy" target="_blank">terms of use</a><br>
+        {{#if error}}
+        <script>
+            alert("Can't upload book. Please try again");
+        </script>
+        {{/if}}
+
+        <button class="btn btn-primary" id="submitForm">
+            Post product
+        </button>
+        <script>
+            var done = false;
+            $("#submitForm").click(function (event) {
+
+                if (!done) {
+                    event.preventDefault();
+
+                    var fileUpload = $("#images");
+                    if (parseInt(fileUpload.get(0).files.length) != 3) {
+                        alert("Please choose exact 3 files to upload");
+                        done = false;
+                    }
+                    else {
+                        done=true;
+                        $(this).trigger('click');
+                    }
+                }
+            });
+        </script>
+    </div>
+</form>
