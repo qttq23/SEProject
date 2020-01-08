@@ -4,10 +4,6 @@ var moment = require('moment');
 
 const bookModel = require('../models/book.model');
 
-router.get('/upload/policy', async function(req, res) {
-    res.render('policy');
-});
-
 router.get('/upload', async function(req, res) {
     if (req.session.authUser === null || req.session.authUser === undefined) {
 
@@ -98,7 +94,9 @@ router.post('/upload', async function(req, res) {
     });
 });
 
-
+router.get('/upload/policy', async function(req, res) {
+    res.render('policy');
+});
 
 function mysql_real_escape_string(str) {
     return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function(char) {
