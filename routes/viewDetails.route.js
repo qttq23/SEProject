@@ -40,13 +40,17 @@ router.post('/:id/post_comment', async function(req, res) {
     }
 
     var nowDate = Date.now();
+    var rating = req.body.rating;
+    if (rating === -1 || rating === 0 || rating === undefined) {
+        rating = 3;
+    }
     //Init the params here
     var comment = {
         "username": req.session.authUser.username,
         "book_id": req.params.id,
         "date_time": moment(nowDate).format('YYYY-MM-DD hh:mm:ss'),
         "content": req.body.commentarea,
-        "rating": req.body.rating,
+        "rating": rating,
         "comment_title": req.body.commenttitle,
     }
 
